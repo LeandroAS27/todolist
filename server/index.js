@@ -9,7 +9,10 @@ app.use(cors({
     methods: ["GET","POST","PUT","DELETE"],
     allowedHeaders: ["Content-Type"],
 }))
-app.use(express.json())
+
+app.use(express.json());
+
+app.use(express.urlencoded({extended:true}))
 
 app.get('/', (req, res) => {
     res.send("Funcionando")
@@ -36,14 +39,14 @@ app.get('/tasks', (req, res) => {
 app.post('/tasks', (req, res) => {
     const task = req.body.newTask
 
-    if(!task.trim('')){
+    if(task.trim('') === ''){
         console.log("Task precisa ser preenchida")
         return
     }
 
     console.log("Corpo da requisicao", task)
 
-    const sql = 'INSERT INTO `bdtodo`. `tasks` (`task`) VALUES (?);'
+    const sql = 'INSERT INTO `railway`. `tasks` (`task`) VALUES (?);'
 
     conexao.query(sql, [task], (error, result) => {
         if(error){

@@ -93,13 +93,15 @@ export default function Home() {
       const response = await fetch('https://todolist-production-7cc0.up.railway.app/tasks', {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({newTask})
+        body: JSON.stringify({newTask}),
       })
 
+      const result = await response.json();
+
       if(response.ok){
-        console.log("Tarefa adicionado com sucesso")
+        console.log("Tarefa adicionado com sucesso", result)
       }
     } catch (error) {
       console.log("Erro ao enviar a tarefa", error)

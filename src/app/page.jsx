@@ -95,7 +95,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({task: newTask})
+        body: JSON.stringify({newTask})
       })
 
       if(response.ok){

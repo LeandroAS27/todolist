@@ -82,7 +82,7 @@ export default function Home() {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
 
     if(newTask.trim() === ''){
       alert("O campo precisa ser preenchido")
@@ -90,7 +90,7 @@ export default function Home() {
     }
 
     try {
-      const response = fetch('https://todolist-production-7cc0.up.railway.app/tasks', {
+      const response = await fetch('https://todolist-production-7cc0.up.railway.app/tasks', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

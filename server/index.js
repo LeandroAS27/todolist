@@ -6,7 +6,7 @@ import { conexao } from './server.js';
 //indicar para o express ler body com json
 app.use(cors({
     origin: "*",
-    methods: ["GET","POST","PUT","DELETE"],
+    methods: ["GET","POST","PUT","DELETE","OPTIONS"],
     allowedHeaders: ["Content-Type"],
 }))
 

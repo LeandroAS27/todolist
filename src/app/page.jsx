@@ -84,7 +84,7 @@ export default function Home() {
 
   const handleSubmit = () => {
 
-    if(newTask.trim('') === ''){
+    if(newTask.trim() === ''){
       alert("O campo precisa ser preenchido")
       return;
     }
@@ -95,7 +95,7 @@ export default function Home() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({newTask})
+        body: JSON.stringify({task: newTask})
       })
 
       if(response.ok){

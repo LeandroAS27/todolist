@@ -82,7 +82,9 @@ export default function Home() {
     }
   }
 
-  const handleSubmit = async() => {
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+
     console.log("funcao handlesubmit init")
     if(newTask.trim() === ''){
       console.log("funcao handlesubmit validacao trim")

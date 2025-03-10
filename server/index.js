@@ -1,10 +1,14 @@
 import express from 'express';
-import cors from 'cors';
+import cors from 'cors'; 
 const app = express()
 import { conexao } from './server.js';
 
 //indicar para o express ler body com json
-app.use(cors())
+app.use(cors({
+    origin: "*",
+    methods: ["GET","POST","PUT","DELETE"],
+    allowedHeaders: ["Content-Type"],
+}))
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -22,9 +26,8 @@ app.get('/tasks', (req, res) => {
     conexao.query(sql, (error, result) => {
         if(error){
             return res.status(500).json({message: "Erro no servidor"})
-        }else{
-            res.status(200).json(result)
         }
+        res.status(200).json(result)
     })
 })
 
@@ -33,10 +36,11 @@ app.get('/tasks', (req, res) => {
 app.post('/tasks', (req, res) => {
     const task = req.body.newTask
 
-    if(task.trim('') === ''){
+    if(!task.trim('')){
         console.log("Task precisa ser preenchida")
         return
     }
+
     console.log("Corpo da requisicao", task)
 
     const sql = 'INSERT INTO `bdtodo`. `tasks` (`task`) VALUES (?);'
@@ -45,16 +49,16 @@ app.post('/tasks', (req, res) => {
         if(error){
             console.log("Erro ao enviar a tarefa", error)
             return res.status(500).json({message: "Erro no servidor"})
-        }else{
+        }
             res.status(200).json(result)
             console.log(result)
-        }
     })
 })
 
+
 //Update
 
-app.patch('/tasks/:id', (req, res) => {
+app.put('/tasks/:id', (req, res) => {
     const idtasks = req.params.id;
     const newTask = req.body.task;
 
@@ -67,7 +71,7 @@ app.patch('/tasks/:id', (req, res) => {
             console.log("Erro ao atualizar a tarefa", error)
             return res.status(500).json({message: "Erro ao atualizar a tarefa no servidor"})
         }else{
-            res.status(200).json(result)
+            res.status(200).json({message: "Tarefa atualizada com sucesso", result})
             console.log(result)
         }
     })
@@ -91,3 +95,6 @@ app.delete('/tasks/:id', (req, res) => {
 })
 
 export default app;
+
+
+

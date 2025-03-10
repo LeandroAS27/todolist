@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchData(){
       try {
-        const response = await fetch("http://localhost:5000/tasks", {
+        const response = await fetch("https://todolist-production-7cc0.up.railway.app/tasks", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function Home() {
   const handleUpdate = async(id) => {
     try {
       const response = await fetch(`http://localhost:5000/tasks/${id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -82,8 +82,7 @@ export default function Home() {
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = () => {
 
     if(newTask.trim('') === ''){
       alert("O campo precisa ser preenchido")
@@ -91,7 +90,7 @@ export default function Home() {
     }
 
     try {
-      const response = fetch('http://localhost:5000/tasks', {
+      const response = fetch('https://todolist-production-7cc0.up.railway.app/tasks', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

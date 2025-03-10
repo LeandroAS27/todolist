@@ -46,7 +46,7 @@ export default function Home() {
 
   const handleUpdate = async(id) => {
     try {
-      const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+      const response = await fetch(`https://todolist-production-7cc0.up.railway.app/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +66,7 @@ export default function Home() {
 
   const handleDelete = async(id) => {
     try {
-      const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+      const response = await fetch(`https://todolist-production-7cc0.up.railway.app/tasks/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -83,13 +83,15 @@ export default function Home() {
   }
 
   const handleSubmit = async() => {
-
+    console.log("funcao handlesubmit init")
     if(newTask.trim() === ''){
+      console.log("funcao handlesubmit validacao trim")
       alert("O campo precisa ser preenchido")
       return;
     }
 
     try {
+      console.log("funcao handlesubmit pre request")
       const response = await fetch('https://todolist-production-7cc0.up.railway.app/tasks', {
         method: "POST",
         headers: {
@@ -99,7 +101,7 @@ export default function Home() {
       })
 
       const result = await response.json();
-
+      console.log("funcao handlesubmit pos request")
       if(response.ok){
         console.log("Tarefa adicionado com sucesso", result)
       }
